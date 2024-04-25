@@ -1,0 +1,33 @@
+@font-face {
+    font-family: Arial, Helvetica, sans-serif;
+    src: url();
+}
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+button{
+    padding: 7px 10px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 7px 0px;
+}
+hr {
+    width: 300px; 
+    margin-left: 0;
+}
+input{
+    width: 288px;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, 0.418);
+    
+    
+}
+select{
+    width: 300px;
+    padding: 5px;
+    border-color: rgba(0, 0, 0, 0.418);
+    border-radius: 5px;
+}

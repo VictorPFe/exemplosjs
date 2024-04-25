@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenando</title>
+    <script src="ordenando.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <label for="valor">Valor</label><br>
+    <input type="number" id="valor"><br>
+    <button onclick="add()">Adicionar</button><br>
+    <hr>
+    <select id="algoritmo">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="quick" selected>Quick Sort</option>
+    </select>
+    <br>
+    <button onclick="ordenar()">Ordenar</button>
+    <button onclick="misturar()">Misturar</button>
+    <br>
+<hr>
+    <ul id="valores"></ul>
+
+    <script>
+        function add() {
+            const valor = document.getElementById('valor').value;
+            const node = document.createElement('li');
+            const textNode = document.createTextNode(valor);
+            node.appendChild(textNode);
+            document.getElementById('valores').appendChild(node);
+        }
+
+        function ordenar() {
+            const valores = Array.from(document.getElementById('valores').children).map(item => parseInt(item.innerText));
+            const algoritmo = document.getElementById('algoritmo').value;
+            switch (algoritmo) {
+                case 'bubble':
+                    bubble_sort(valores);
+                    break;
+                case 'selection':
+                    selection_sort(valores);
+                    break;
+                case 'quick':
+                    quick_sort(valores);
+                    break;
+                default:
+                    break;
+            }
+            document.getElementById('valores').innerHTML = valores.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function misturar() {
+            const valores = Array.from(document.getElementById('valores').children).map(item => parseInt(item.innerText));
+            shuffle(valores, 100); // Troque o valor 100 pelo número de trocas desejado
+            document.getElementById('valores').innerHTML = valores.map(item => `<li>${item}</li>`).join('');
+        }
+    </script>
+</body>
+</html>

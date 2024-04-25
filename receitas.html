@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-warning">
+    <div class="container-fluid">
+        <h1>Catálogo de Receitas</h1>
+
+        <div id="pnlCatalogo" class="d-flex flex-wrap"></div>
+    </div>
+
+    <script>
+        const receitas = [
+            {
+                titulo: "Bolo Simples",
+                imagem: "imagens/bolo.jpg",
+                preparo: "Bata as claras em neve e reserve. Misture as gemas, a margarina e o açúcar até obter uma massa homogênea. Acrescente o leite e a farinha de trigo aos poucos, sem parar de bater. Por último, adicione as claras em neve e o fermento. Despeje a massa em uma forma grande de furo central untada e enfarinhada. Asse em forno médio 180 °C, preaquecido, por aproximadamente 40 minutos ou ao furar o bolo com um garfo, este saia limpo.",
+                ingredientes: ["2 xícaras (chá) de açúcar", "3 xícaras (chá) de farinha de trigo", "4 colheres (sopa) de margarina", "3 ovos", "1 e 1/2 xícara (chá) de leite", "1 colher (sopa) bem cheia de fermento em pó"]
+            },
+            {
+                titulo: "Torta alemã de maçã",
+                imagem: "imagens/torta_alemã_de_maçã.jpg",
+                preparo: "<strong>MASSA:</strong> Misture bem a manteiga com o açúcar, junte a gema e acrescente o vinho. Adicione a farinha e amasse até obter uma massa homogênea, mas gordurosa e pegajosa. Divida a massa em duas porções na proporção 2/3 e 1/3. Leve à geladeira, por ½ hora. <strong>RECHEIO:</strong> Descasque as maçãs e corte em fatias médias. Misture as maçãs, o vinho e a uva-passa. Cozinhe no vapor até amolecer. Forre o fundo e as laterais de uma forma desmontável com os 2/3 da massa. Coloque o recheio. Com o restante da massa, faça rolinhos bem finos e monte uma grade sobre o recheio. Asse, em forno médio, até a massa estar dourada.",
+                ingredientes: ["300 gr de farinha", "200 gr de manteiga", "100 gr de açúcar", "1 gema",
+                "1 colher (sopa) de vinho tinto", "6 maçãs vermelhas ácidas (1kg)", "1 colher (sopa) de vinho tinto", "100 gr de uva passa branca sem semente"]
+            },
+            {
+                titulo: "Brownies",
+                imagem: "imagens/Brownies.jpg",
+                preparo: "Derreta o chocolate no microndas ou banho maria e reserve. Junte as nozes e os outros ingredientes secos e reserve. Bata a manteiga com a baunilha até obter um creme, adicione e açúcar e continue a bater juntando os ovos 1 a 1.Acrescente o chocolate e por fim os ingredientes secos.Coloque numa forma untada e polvilhada com farinha e leve ao forno médio. Depois de assado, ainda quente, corte em quadradinhos e deixe esfriar.",
+                ingredientes: ["2 tabletes de chocolate meio-amargo", "1 xícara de farinha de trigo, peneirada com:", "1/2 colher (chá) de fermento", "1/2 colher (chá) de sal", "1 xícara de nozes picadas", "1/2 xícara de manteiga (temperatura ambiente)", "1/2 colher (chá) de essência de baunilha", "1 xícara de açúcar", "2 ovos"]
+            }
+            
+        ];
+
+        function getListaIngredientes(ingredientes) {
+            return `<ul>${ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}</ul>`;
+        }
+
+        function getCard(receita) {
+            return `
+                <div class="card" style="width: 250px; margin: 10px;">
+                    <img src="${receita.imagem}" class="card-img-top" alt="Imagem da Receita">
+                    <div class="card-body">
+                        <h5 class="card-title">${receita.titulo}</h5>
+                        <div class="card-text">
+                            ${getListaIngredientes(receita.ingredientes)}
+                            <hr>
+                            ${receita.preparo}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function preencheCatalogo() {
+            const pnlCatalogo = document.getElementById('pnlCatalogo');
+            const htmlReceitas = receitas.map(receita => getCard(receita)).join('');
+            pnlCatalogo.innerHTML = htmlReceitas;
+        }
+
+        window.onload = preencheCatalogo;
+    </script>
+</body>
+</html>
